@@ -72,6 +72,11 @@ class MyTruck < Vehicle
   include Towable
 
   NUMBER_OF_DOORS = 2
+
+  def spray_paint(color)
+    self.color = color
+    puts "You changed the color of your Truck to #{self.color} great :-("
+  end
 end
 
 my_car = MyCar.new('2017', 'Red', 'Ford')
@@ -93,3 +98,5 @@ puts "---method lookup---"
 puts MyCar.ancestors
 puts MyTruck.ancestors
 puts Vehicle.ancestors
+my_truck = MyTruck.new('2000', 'Red', 'Ford')
+my_truck.spray_paint("Blue")
