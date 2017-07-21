@@ -53,27 +53,32 @@ class Vehicle
     "Your #{self.model} is #{years_old} years old."
   end
 
-  private
+  private # Encapsulation
 
-  def years_old
+  def years_old # only accessible in context of current object
     Time.now.year - self.year
   end
 end
 
-class MyCar < Vehicle
+class MyCar < Vehicle # Inheritance
   NUMBER_OF_DOORS = 4
+
+  def spray_paint(color) # Polymorphism
+    self.color = color
+    puts "You changed the color of your car to #{self.color} great so sad"
+  end
 
   def to_s
     "My car is a #{color}, #{year}, #{@model}!"
   end
 end
 
-class MyTruck < Vehicle
+class MyTruck < Vehicle # Inheritance
   include Towable
 
   NUMBER_OF_DOORS = 2
 
-  def spray_paint(color)
+  def spray_paint(color) # Polymorphism
     self.color = color
     puts "You changed the color of your Truck to #{self.color} great :-("
   end
@@ -87,16 +92,16 @@ my_car.brake(10)
 my_car.current_speed
 my_car.park_car
 my_car.current_speed
-my_car.spray_paint("Blue")
-my_car.color = "Yellow"
+my_car.spray_paint('Blue')
+my_car.color = 'Yellow'
 puts my_car.color
 puts my_car.year
 MyCar.gas_mileage(13, 351)
-my_car = MyCar.new("2010", "silver", "Ford Focus")
+my_car = MyCar.new('2010', 'silver', 'Ford Focus')
 puts my_car
-puts "---method lookup---"
+puts '---method lookup---'
 puts MyCar.ancestors
 puts MyTruck.ancestors
 puts Vehicle.ancestors
 my_truck = MyTruck.new('2000', 'Red', 'Ford')
-my_truck.spray_paint("Blue")
+my_truck.spray_paint('Blue')
